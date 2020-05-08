@@ -16,10 +16,7 @@ public struct Tab: View {
     }
     
     public var body: some View {
-        NavigationView {
-            self.view
-        }
-        .padding(.bottom, 40)
+        self.view
     }
 }
 
