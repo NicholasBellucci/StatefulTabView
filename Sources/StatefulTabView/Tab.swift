@@ -23,7 +23,7 @@ public struct Tab: View {
     }
 }
 
-extension Tab {
+public extension Tab {
     func barItem(title: String, imageName: String) -> Tab {
         var copy = self
         copy.barItem = UITabBarItem(title: title, image: UIImage(named: imageName), selectedImage: nil)
