@@ -11,7 +11,7 @@ public struct Tab: View {
     var view: AnyView
     var barItem: UITabBarItem? = nil
     
-    init<T>(@ViewBuilder content: @escaping () -> T) where T: View {
+    public init<T>(@ViewBuilder content: @escaping () -> T) where T: View {
         self.view = AnyView(content())
     }
     
