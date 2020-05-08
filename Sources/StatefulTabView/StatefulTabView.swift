@@ -90,8 +90,8 @@ public struct StatefulTabView: View {
     }
 }
 
-public extension TabView {
-    func tabBarBackgroundColor(_ color: UIColor) -> TabView {
+public extension StatefulTabView {
+    func tabBarBackgroundColor(_ color: UIColor) -> StatefulTabView {
         var copy = self
         copy.backgroundColor = color
         return copy
