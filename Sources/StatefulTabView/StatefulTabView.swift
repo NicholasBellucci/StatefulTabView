@@ -6,7 +6,13 @@ public struct StatefulTabView: View {
     
     @State var selectedIndex: Int = 0
     
-    public init(@ViewBuilder tabs: () -> TupleView<(Tab)>) {
+    public init(@ViewBuilder tab: () -> Tab) {
+        let tabController = UIHostingController(rootView: tab())
+        tabController.tabBarItem = tab().barItem
+        viewControllers.append(tabController)
+    }
+    
+    public init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab)>) {
         let tuple = tabs().value
         let tupleMirror = Mirror(reflecting: tuple)
         
@@ -19,7 +25,7 @@ public struct StatefulTabView: View {
         }
     }
     
-    init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab)>) {
+    public init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab)>) {
         let tuple = tabs().value
         let tupleMirror = Mirror(reflecting: tuple)
         
@@ -32,7 +38,7 @@ public struct StatefulTabView: View {
         }
     }
     
-    init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab)>) {
+    public init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab, Tab)>) {
         let tuple = tabs().value
         let tupleMirror = Mirror(reflecting: tuple)
         
@@ -45,7 +51,7 @@ public struct StatefulTabView: View {
         }
     }
     
-    init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab, Tab)>) {
+    public init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab, Tab, Tab)>) {
         let tuple = tabs().value
         let tupleMirror = Mirror(reflecting: tuple)
         
@@ -58,20 +64,7 @@ public struct StatefulTabView: View {
         }
     }
     
-    init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab, Tab, Tab)>) {
-        let tuple = tabs().value
-        let tupleMirror = Mirror(reflecting: tuple)
-        
-        tupleMirror.children.forEach {
-            if let tab = $0.value as? Tab {
-                let tabController = UIHostingController(rootView: tab)
-                tabController.tabBarItem = tab.barItem
-                viewControllers.append(tabController)
-            }
-        }
-    }
-    
-    init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab, Tab, Tab, Tab)>) {
+    public init(@ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab, Tab, Tab, Tab)>) {
         let tuple = tabs().value
         let tupleMirror = Mirror(reflecting: tuple)
         
