@@ -46,7 +46,9 @@ struct TabBarController: UIViewControllerRepresentable {
         
         func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
             if parent.selectedIndex == tabBarController.selectedIndex {
-                print("root")
+                print(parent.controllers[tabBarController.selectedIndex].view)
+                print(parent.controllers[tabBarController.selectedIndex].view.window)
+                print(parent.controllers[tabBarController.selectedIndex].view.window?.rootViewController)
                 parent.controllers[tabBarController.selectedIndex].view.window?.rootViewController?.dismiss(animated: true, completion: nil)
             } else {
                 parent.selectedIndex = tabBarController.selectedIndex
