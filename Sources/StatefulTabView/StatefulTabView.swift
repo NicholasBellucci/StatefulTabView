@@ -84,6 +84,10 @@ public struct StatefulTabView: View {
 }
 
 public extension StatefulTabView {
+    func selectedIndex(_ index: Int) -> StatefulTabView {
+        self.selectedIndex = index
+    }
+    
     func tabBarBackgroundColor(_ color: UIColor) -> StatefulTabView {
         var copy = self
         copy.backgroundColor = color
