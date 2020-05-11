@@ -1,6 +1,6 @@
 # StatefulTabView
 
-A SwiftUI UITabBarController implementation that retains state between tab changes.
+A SwiftUI UITabBarController implementation that retains state between tab changes. Big thanks to [Amzd](https://gist.github.com/Amzd) and everyone who helped to refine this [gist](https://gist.github.com/Amzd/2eb5b941865e8c5cccf149e6e07c8810) as it was a major jumping off point for setting up this project.
 
 #### Requirements
 - iOS 13.0+
