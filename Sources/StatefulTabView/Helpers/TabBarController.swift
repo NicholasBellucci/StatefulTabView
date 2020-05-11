@@ -15,6 +15,7 @@ public enum TabBarBackgroundConfiguration {
 
 struct TabBarController: UIViewControllerRepresentable {
     var controllers: [UIViewController]
+    var tabBarItems: [Tab]
     
     var barTintColor: UIColor?
     var backgroundColor: UIColor?
@@ -34,6 +35,14 @@ struct TabBarController: UIViewControllerRepresentable {
 
     func updateUIViewController(_ tabBarController: UITabBarController, context: Context) {
         tabBarController.selectedIndex = selectedIndex
+        
+        tabBarItems.forEach { tab in
+            guard let index = tabBarItems.firstIndex(where: { $0.barItem == tab.barItem }), let controllers = tabBarController.viewControllers else { return }
+            
+            if controllers.indices.contains(index) {
+                controllers[index].tabBarItem.badgeValue = tab.badgeValue
+            }
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -48,7 +57,19 @@ struct TabBarController: UIViewControllerRepresentable {
         }
         
         func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+            if parent.selectedIndex == tabBarController.selectedIndex {
+                popToRootViewController(viewController: viewController)
+            }
+
             parent.selectedIndex = tabBarController.selectedIndex
+        }
+
+        func popToRootViewController(viewController: UIViewController) {
+            guard let navigationController = navigationController(for: viewController)  else {
+                return
+            }
+            
+            navigationController.popToRootViewController(animated: true)
         }
     }
 }
@@ -77,5 +98,27 @@ private extension TabBarController {
         }
         
         tabBar.standardAppearance = appearance
+    }
+}
+
+private extension TabBarController.Coordinator {
+    func navigationController(for viewController: UIViewController) -> UINavigationController? {
+        if viewController is UINavigationController {
+            return viewController as? UINavigationController
+        }
+        
+        for childViewController in viewController.children {
+            if childViewController is UINavigationController {
+                return childViewController as? UINavigationController
+            }
+            
+            if childViewController.children.count > 0 {
+                if let navigationController = navigationController(for: childViewController) {
+                    return navigationController
+                }
+            }
+        }
+
+        return nil
     }
 }

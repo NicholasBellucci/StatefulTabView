@@ -9,6 +9,7 @@ import SwiftUI
 
 public struct StatefulTabView: View {
     internal var viewControllers: [UIHostingController<Tab>] = []
+    internal var tabBarItems: [Tab] = []
     
     internal var barTintColor: UIColor? = nil
     internal var backgroundColor: UIColor? = nil
@@ -66,6 +67,7 @@ public struct StatefulTabView: View {
     
     public var body: some View {
         TabBarController(controllers: viewControllers,
+                         tabBarItems: tabBarItems,
                          barTintColor: barTintColor,
                          backgroundColor: backgroundColor,
                          tabBarConfiguration: tabBarConfiguration,
@@ -80,6 +82,7 @@ private extension StatefulTabView {
             if let tab = $0.value as? Tab {
                 let tabController = UIHostingController(rootView: tab)
                 tabController.tabBarItem = tab.barItem
+                tabBarItems.append(tab)
                 viewControllers.append(tabController)
             }
         }

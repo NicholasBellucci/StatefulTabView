@@ -11,7 +11,11 @@ public struct Tab: View {
     var view: AnyView
     var barItem: UITabBarItem? = nil
     
-    public init<T>(@ViewBuilder content: @escaping () -> T) where T: View {
+    @Binding var badgeValue: String?
+    
+    public init<T>(badgeValue: Binding<String?> = .constant(nil), @ViewBuilder content: @escaping () -> T) where T: View {
+        _badgeValue = badgeValue
+        
         self.view = AnyView(content())
     }
     

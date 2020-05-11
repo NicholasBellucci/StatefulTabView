@@ -10,11 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State var selectedIndex: Int = 0
+    @State var badgeValue1: String? = "1"
     
     var body: some View {
         StatefulTabView(selectedIndex: $selectedIndex) {
-            Tab {
-                NavigationView{
+            Tab(badgeValue: $badgeValue1) {
+                NavigationView {
                     List {
                         Section {
                             ForEach(0..<20, id: \.self) { index in

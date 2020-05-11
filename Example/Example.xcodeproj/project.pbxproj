@@ -124,8 +124,8 @@
 		4C9E33172468E224007F2C0D /* StatefulTabView */ = {
 			isa = PBXGroup;
 			children = (
-				4C9E33182468E224007F2C0D /* Modifiers */,
 				4C9E331B2468E224007F2C0D /* StatefulTabView.swift */,
+				4C9E33182468E224007F2C0D /* Modifiers */,
 				4C9E331C2468E224007F2C0D /* Helpers */,
 			);
 			name = StatefulTabView;

@@ -10,7 +10,7 @@ import SwiftUI
 public extension Tab {
     func barItem(title: String, imageName: String) -> Tab {
         var copy = self
-        copy.barItem = UITabBarItem(title: title, image: UIImage(named: imageName), selectedImage:nil)
+        copy.barItem = UITabBarItem(title: title, image: UIImage(named: imageName), selectedImage: nil)
         return copy
     }
     
