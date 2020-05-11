@@ -21,7 +21,7 @@ public struct StatefulTabView: View {
     
     @Binding internal var selectedIndex: Int
     
-    public init(selectedIndex: Binding<Int> = .constant(0), _ type: BuilderType, _ content: () -> Tab) {
+    public init(selectedIndex: Binding<Int>, _ type: BuilderType, _ content: () -> Tab) {
         _selectedIndex = selectedIndex
         
         let tabController = UIHostingController(rootView: content().view)
@@ -29,7 +29,7 @@ public struct StatefulTabView: View {
         viewControllers.append(tabController)
     }
     
-    public init(selectedIndex: Binding<Int> = .constant(0), @TabBuilder _ content: () -> [Tab]) {
+    public init(selectedIndex: Binding<Int>, @TabBuilder _ content: () -> [Tab]) {
         _selectedIndex = selectedIndex
         configureViewControllers(with: content())
     }

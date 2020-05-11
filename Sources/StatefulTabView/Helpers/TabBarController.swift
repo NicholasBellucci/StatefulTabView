@@ -27,7 +27,7 @@ struct TabBarController: UIViewControllerRepresentable {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = controllers
         tabBarController.delegate = context.coordinator
-        tabBarController.selectedIndex = 0
+        tabBarController.selectedIndex = selectedIndex
         
         configure(tabBarController.tabBar)
         return tabBarController
