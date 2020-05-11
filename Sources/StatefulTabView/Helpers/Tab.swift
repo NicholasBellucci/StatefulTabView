@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  Tab.swift
+//
 //
 //  Created by Nicholas Bellucci on 5/8/20.
 //
@@ -17,13 +17,5 @@ public struct Tab: View {
     
     public var body: some View {
         self.view
-    }
-}
-
-public extension Tab {
-    func barItem(title: String, imageName: String) -> Tab {
-        var copy = self
-        copy.barItem = UITabBarItem(title: title, image: UIImage(named: imageName), selectedImage: nil)
-        return copy
     }
 }
