@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+public enum BuilderType {
+    case individual
+}
+
 public struct StatefulTabView: View {
     internal var viewControllers: [UIHostingController<AnyView>] = []
     internal var tabBarItems: [Tab] = []
@@ -17,7 +21,7 @@ public struct StatefulTabView: View {
     
     @Binding internal var selectedIndex: Int
     
-    init(selectedIndex: Binding<Int> = .constant(0), singleTab: Bool, _ content: () -> Tab) {
+    init(selectedIndex: Binding<Int> = .constant(0), _ type: BuilderType, _ content: () -> Tab) {
         _selectedIndex = selectedIndex
         
         let tabController = UIHostingController(rootView: content().view)
