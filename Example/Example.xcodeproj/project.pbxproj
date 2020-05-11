@@ -13,7 +13,6 @@
 		4C6A94522468D15200D5C6C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A94512468D15200D5C6C7 /* Assets.xcassets */; };
 		4C6A94552468D15200D5C6C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A94542468D15200D5C6C7 /* Preview Assets.xcassets */; };
 		4C6A94582468D15200D5C6C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A94562468D15200D5C6C7 /* LaunchScreen.storyboard */; };
-		4C9E331F2468E224007F2C0D /* Tab+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E33192468E224007F2C0D /* Tab+Modifiers.swift */; };
 		4C9E33202468E224007F2C0D /* StatefulTabView+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E331A2468E224007F2C0D /* StatefulTabView+Modifiers.swift */; };
 		4C9E33212468E224007F2C0D /* StatefulTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E331B2468E224007F2C0D /* StatefulTabView.swift */; };
 		4C9E33222468E224007F2C0D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E331D2468E224007F2C0D /* Tab.swift */; };
@@ -48,7 +47,6 @@
 		4C6A94592468D15200D5C6C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C6A945E2468D15200D5C6C7 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C6A94692468D15200D5C6C7 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C9E33192468E224007F2C0D /* Tab+Modifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+Modifiers.swift"; sourceTree = "<group>"; };
 		4C9E331A2468E224007F2C0D /* StatefulTabView+Modifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StatefulTabView+Modifiers.swift"; sourceTree = "<group>"; };
 		4C9E331B2468E224007F2C0D /* StatefulTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatefulTabView.swift; sourceTree = "<group>"; };
 		4C9E331D2468E224007F2C0D /* Tab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 		4C9E33182468E224007F2C0D /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
-				4C9E33192468E224007F2C0D /* Tab+Modifiers.swift */,
 				4C9E331A2468E224007F2C0D /* StatefulTabView+Modifiers.swift */,
 			);
 			path = Modifiers;
@@ -285,7 +282,6 @@
 				4C9E33232468E224007F2C0D /* TabBarController.swift in Sources */,
 				4C6A944C2468D15000D5C6C7 /* AppDelegate.swift in Sources */,
 				4C6A944E2468D15000D5C6C7 /* SceneDelegate.swift in Sources */,
-				4C9E331F2468E224007F2C0D /* Tab+Modifiers.swift in Sources */,
 				4C9E33212468E224007F2C0D /* StatefulTabView.swift in Sources */,
 				4C6A94502468D15000D5C6C7 /* ContentView.swift in Sources */,
 				4C9E33222468E224007F2C0D /* Tab.swift in Sources */,

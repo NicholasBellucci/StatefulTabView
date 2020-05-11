@@ -13,8 +13,35 @@ public struct Tab: View {
     
     @Binding var badgeValue: String?
     
-    public init<T>(badgeValue: Binding<String?> = .constant(nil), @ViewBuilder content: @escaping () -> T) where T: View {
+    public init<T>(title: String,
+                   imageName: String,
+                   badgeValue: Binding<String?> = .constant(nil),
+                   @ViewBuilder content: @escaping () -> T) where T: View {
+        
         _badgeValue = badgeValue
+        barItem = UITabBarItem(title: title, image: UIImage(named: imageName), selectedImage: nil)
+        
+        self.view = AnyView(content())
+    }
+    
+    public init<T>(title: String,
+                   systemImageName: String,
+                   badgeValue: Binding<String?> = .constant(nil),
+                   @ViewBuilder content: @escaping () -> T) where T: View {
+        
+        _badgeValue = badgeValue
+        barItem = UITabBarItem(title: title, image: UIImage(systemName: systemImageName), selectedImage: nil)
+        
+        self.view = AnyView(content())
+    }
+    
+    public init<T>(title: String,
+                   image: UIImage?,
+                   badgeValue: Binding<String?> = .constant(nil),
+                   @ViewBuilder content: @escaping () -> T) where T: View {
+        
+        _badgeValue = badgeValue
+        barItem = UITabBarItem(title: title, image: image, selectedImage: nil)
         
         self.view = AnyView(content())
     }

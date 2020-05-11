@@ -14,7 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         StatefulTabView(selectedIndex: $selectedIndex) {
-            Tab(badgeValue: $badgeValue1) {
+            Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: $badgeValue1) {
                 NavigationView {
                     List {
                         Section {
@@ -28,9 +28,8 @@ struct ContentView: View {
                     .navigationBarTitle("Navigation View 1")
                 }
             }
-            .barItem(title: "Tab 1", systemImageName: "circle.fill")
             
-            Tab {
+            Tab(title: "Tab 2", systemImageName: "square.fill") {
                 NavigationView{
                     List {
                         Section {
@@ -44,9 +43,8 @@ struct ContentView: View {
                     .navigationBarTitle("Navigation View 2")
                 }
             }
-            .barItem(title: "Tab 2", systemImageName: "square.fill")
             
-            Tab {
+            Tab(title: "Tab 3", image: UIImage(systemName: "triangle.fill")) {
                 NavigationView{
                     List {
                         Section {
@@ -60,7 +58,6 @@ struct ContentView: View {
                     .navigationBarTitle("Navigation View 3")
                 }
             }
-            .barItem(title: "Tab 3", image: UIImage(systemName: "triangle.fill"))
         }
         .barTintColor(.red)
         .barBackgroundColor(.yellow)
