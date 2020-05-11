@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct Tab: View {
+public struct Tab {
     var view: AnyView
     var barItem: UITabBarItem? = nil
     
@@ -44,9 +44,5 @@ public struct Tab: View {
         barItem = UITabBarItem(title: title, image: image, selectedImage: nil)
         
         self.view = AnyView(content())
-    }
-    
-    public var body: some View {
-        self.view
     }
 }

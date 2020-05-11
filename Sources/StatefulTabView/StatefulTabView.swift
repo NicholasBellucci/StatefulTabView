@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct StatefulTabView: View {
-    internal var viewControllers: [UIHostingController<Tab>] = []
+    internal var viewControllers: [UIHostingController<AnyView>] = []
     internal var tabBarItems: [Tab] = []
     
     internal var barTintColor: UIColor? = nil
@@ -17,52 +17,17 @@ public struct StatefulTabView: View {
     
     @Binding internal var selectedIndex: Int
     
-    init(selectedIndex: Binding<Int> = .constant(0), @ViewBuilder tab: () -> Tab) {
+    init(selectedIndex: Binding<Int> = .constant(0), singleTab: Bool, _ content: () -> Tab) {
         _selectedIndex = selectedIndex
         
-        let tabController = UIHostingController(rootView: tab())
-        tabController.tabBarItem = tab().barItem
+        let tabController = UIHostingController(rootView: content().view)
+        tabController.tabBarItem = content().barItem
         viewControllers.append(tabController)
     }
     
-    init(selectedIndex: Binding<Int> = .constant(0), @ViewBuilder tabs: () -> TupleView<(Tab, Tab)>) {
+    init(selectedIndex: Binding<Int> = .constant(0), @TabBuilder _ content: () -> [Tab]) {
         _selectedIndex = selectedIndex
-        
-        let tuple = tabs().value
-        let tupleMirror = Mirror(reflecting: tuple)
-        configureViewControllers(with: tupleMirror)
-    }
-    
-    init(selectedIndex: Binding<Int> = .constant(0), @ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab)>) {
-        _selectedIndex = selectedIndex
-        
-        let tuple = tabs().value
-        let tupleMirror = Mirror(reflecting: tuple)
-        configureViewControllers(with: tupleMirror)
-    }
-    
-    init(selectedIndex: Binding<Int> = .constant(0), @ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab, Tab)>) {
-        _selectedIndex = selectedIndex
-        
-        let tuple = tabs().value
-        let tupleMirror = Mirror(reflecting: tuple)
-        configureViewControllers(with: tupleMirror)
-    }
-    
-    init(selectedIndex: Binding<Int> = .constant(0), @ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab, Tab, Tab)>) {
-        _selectedIndex = selectedIndex
-        
-        let tuple = tabs().value
-        let tupleMirror = Mirror(reflecting: tuple)
-        configureViewControllers(with: tupleMirror)
-    }
-    
-    init(selectedIndex: Binding<Int> = .constant(0), @ViewBuilder tabs: () -> TupleView<(Tab, Tab, Tab, Tab, Tab, Tab)>) {
-        _selectedIndex = selectedIndex
-        
-        let tuple = tabs().value
-        let tupleMirror = Mirror(reflecting: tuple)
-        configureViewControllers(with: tupleMirror)
+        configureViewControllers(with: content())
     }
     
     public var body: some View {
@@ -77,14 +42,19 @@ public struct StatefulTabView: View {
 }
 
 private extension StatefulTabView {
-    mutating func configureViewControllers(with mirror: Mirror) {
-        mirror.children.forEach {
-            if let tab = $0.value as? Tab {
-                let tabController = UIHostingController(rootView: tab)
-                tabController.tabBarItem = tab.barItem
-                tabBarItems.append(tab)
-                viewControllers.append(tabController)
-            }
+    mutating func configureViewControllers(with tabs: [Tab]) {
+        tabs.forEach {
+            let tabController = UIHostingController(rootView: $0.view)
+            tabController.tabBarItem = $0.barItem
+            tabBarItems.append($0)
+            viewControllers.append(tabController)
         }
+    }
+}
+
+@_functionBuilder
+public struct TabBuilder {
+    public static func buildBlock(_ children: Tab...) -> [Tab] {
+        children
     }
 }
