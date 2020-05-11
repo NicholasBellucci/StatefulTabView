@@ -28,7 +28,7 @@ In Xcode 11 or greater, navigate to `File > Swift Packages > Add Package Depende
 
 ## Usage
 
-Setting up StatefulTabView is reletively simple and works similar to the native TabView. The main difference is that the content of the tabs is wrapped in a Tab struct. There is no limitation on how many tabs can be used. Once more than 5 are used, the Apple standard more tab will become available. Feel free to check out the example project for the exact usage.
+Setting up StatefulTabView is relatively simple and works similar to the native TabView. The main difference is that the content of the tabs is wrapped in a Tab struct. There is no limitation on how many tabs can be used. Once more than 5 are used, the Apple standard more tab will become available. Feel free to check out the example project for the exact usage.
 
 ### Basic
 ```Swift
