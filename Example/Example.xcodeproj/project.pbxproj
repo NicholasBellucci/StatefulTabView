@@ -13,11 +13,11 @@
 		4C6A94522468D15200D5C6C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A94512468D15200D5C6C7 /* Assets.xcassets */; };
 		4C6A94552468D15200D5C6C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A94542468D15200D5C6C7 /* Preview Assets.xcassets */; };
 		4C6A94582468D15200D5C6C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A94562468D15200D5C6C7 /* LaunchScreen.storyboard */; };
-		4C6A947E2468D1AC00D5C6C7 /* StatefulTabView+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A947D2468D1AC00D5C6C7 /* StatefulTabView+Modifiers.swift */; };
-		4C6A94802468D1AF00D5C6C7 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A947F2468D1AF00D5C6C7 /* Tab.swift */; };
-		4C6A94822468D1B000D5C6C7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A94812468D1B000D5C6C7 /* TabBarController.swift */; };
-		4C6A94842468D1B200D5C6C7 /* StatefulTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A94832468D1B200D5C6C7 /* StatefulTabView.swift */; };
-		4C6A948C2468D2AC00D5C6C7 /* Tab+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A948B2468D2AC00D5C6C7 /* Tab+Modifiers.swift */; };
+		4C9E331F2468E224007F2C0D /* Tab+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E33192468E224007F2C0D /* Tab+Modifiers.swift */; };
+		4C9E33202468E224007F2C0D /* StatefulTabView+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E331A2468E224007F2C0D /* StatefulTabView+Modifiers.swift */; };
+		4C9E33212468E224007F2C0D /* StatefulTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E331B2468E224007F2C0D /* StatefulTabView.swift */; };
+		4C9E33222468E224007F2C0D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E331D2468E224007F2C0D /* Tab.swift */; };
+		4C9E33232468E224007F2C0D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E331E2468E224007F2C0D /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,11 +48,11 @@
 		4C6A94592468D15200D5C6C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C6A945E2468D15200D5C6C7 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C6A94692468D15200D5C6C7 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C6A947D2468D1AC00D5C6C7 /* StatefulTabView+Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatefulTabView+Modifiers.swift"; sourceTree = "<group>"; };
-		4C6A947F2468D1AF00D5C6C7 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
-		4C6A94812468D1B000D5C6C7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		4C6A94832468D1B200D5C6C7 /* StatefulTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulTabView.swift; sourceTree = "<group>"; };
-		4C6A948B2468D2AC00D5C6C7 /* Tab+Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Modifiers.swift"; sourceTree = "<group>"; };
+		4C9E33192468E224007F2C0D /* Tab+Modifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+Modifiers.swift"; sourceTree = "<group>"; };
+		4C9E331A2468E224007F2C0D /* StatefulTabView+Modifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StatefulTabView+Modifiers.swift"; sourceTree = "<group>"; };
+		4C9E331B2468E224007F2C0D /* StatefulTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatefulTabView.swift; sourceTree = "<group>"; };
+		4C9E331D2468E224007F2C0D /* Tab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		4C9E331E2468E224007F2C0D /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +104,7 @@
 				4C6A944B2468D15000D5C6C7 /* AppDelegate.swift */,
 				4C6A944D2468D15000D5C6C7 /* SceneDelegate.swift */,
 				4C6A944F2468D15000D5C6C7 /* ContentView.swift */,
-				4C6A94872468D1D000D5C6C7 /* StatefulTabView */,
+				4C9E33172468E224007F2C0D /* StatefulTabView */,
 				4C6A94512468D15200D5C6C7 /* Assets.xcassets */,
 				4C6A94562468D15200D5C6C7 /* LaunchScreen.storyboard */,
 				4C6A94592468D15200D5C6C7 /* Info.plist */,
@@ -121,32 +121,33 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		4C6A94872468D1D000D5C6C7 /* StatefulTabView */ = {
+		4C9E33172468E224007F2C0D /* StatefulTabView */ = {
 			isa = PBXGroup;
 			children = (
-				4C6A94832468D1B200D5C6C7 /* StatefulTabView.swift */,
-				4C6A948A2468D1F100D5C6C7 /* Extensions */,
-				4C6A94892468D1E900D5C6C7 /* Helpers */,
+				4C9E33182468E224007F2C0D /* Modifiers */,
+				4C9E331B2468E224007F2C0D /* StatefulTabView.swift */,
+				4C9E331C2468E224007F2C0D /* Helpers */,
 			);
-			path = StatefulTabView;
+			name = StatefulTabView;
+			path = ../../Sources/StatefulTabView;
 			sourceTree = "<group>";
 		};
-		4C6A94892468D1E900D5C6C7 /* Helpers */ = {
+		4C9E33182468E224007F2C0D /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
-				4C6A947F2468D1AF00D5C6C7 /* Tab.swift */,
-				4C6A94812468D1B000D5C6C7 /* TabBarController.swift */,
+				4C9E33192468E224007F2C0D /* Tab+Modifiers.swift */,
+				4C9E331A2468E224007F2C0D /* StatefulTabView+Modifiers.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		4C9E331C2468E224007F2C0D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E331D2468E224007F2C0D /* Tab.swift */,
+				4C9E331E2468E224007F2C0D /* TabBarController.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		4C6A948A2468D1F100D5C6C7 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				4C6A947D2468D1AC00D5C6C7 /* StatefulTabView+Modifiers.swift */,
-				4C6A948B2468D2AC00D5C6C7 /* Tab+Modifiers.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,14 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9E33202468E224007F2C0D /* StatefulTabView+Modifiers.swift in Sources */,
+				4C9E33232468E224007F2C0D /* TabBarController.swift in Sources */,
 				4C6A944C2468D15000D5C6C7 /* AppDelegate.swift in Sources */,
-				4C6A947E2468D1AC00D5C6C7 /* StatefulTabView+Modifiers.swift in Sources */,
-				4C6A94842468D1B200D5C6C7 /* StatefulTabView.swift in Sources */,
-				4C6A94802468D1AF00D5C6C7 /* Tab.swift in Sources */,
-				4C6A94822468D1B000D5C6C7 /* TabBarController.swift in Sources */,
-				4C6A948C2468D2AC00D5C6C7 /* Tab+Modifiers.swift in Sources */,
 				4C6A944E2468D15000D5C6C7 /* SceneDelegate.swift in Sources */,
+				4C9E331F2468E224007F2C0D /* Tab+Modifiers.swift in Sources */,
+				4C9E33212468E224007F2C0D /* StatefulTabView.swift in Sources */,
 				4C6A94502468D15000D5C6C7 /* ContentView.swift in Sources */,
+				4C9E33222468E224007F2C0D /* Tab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
