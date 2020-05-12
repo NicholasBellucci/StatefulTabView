@@ -65,7 +65,7 @@ struct TabBarController: UIViewControllerRepresentable {
         }
 
         func popToRootViewController(viewController: UIViewController) {
-            guard let navigationController = navigationController(for: viewController)  else {
+            guard let navigationController = navigationController(in: viewController)  else {
                 return
             }
             
@@ -102,23 +102,21 @@ private extension TabBarController {
 }
 
 private extension TabBarController.Coordinator {
-    func navigationController(for viewController: UIViewController) -> UINavigationController? {
-        if viewController is UINavigationController {
-            return viewController as? UINavigationController
+    func navigationController(in viewController: UIViewController) -> UINavigationController? {
+        var controller: UINavigationController?
+        
+        if let navigationController = viewController as? UINavigationController {
+            return navigationController
         }
         
-        for childViewController in viewController.children {
-            if childViewController is UINavigationController {
-                return childViewController as? UINavigationController
-            }
-            
-            if childViewController.children.count > 0 {
-                if let navigationController = navigationController(for: childViewController) {
-                    return navigationController
-                }
+        viewController.children.forEach {
+            if let navigationController = $0 as? UINavigationController {
+                controller = navigationController
+            } else {
+                controller = navigationController(in: $0)
             }
         }
-
-        return nil
+        
+        return controller
     }
 }
