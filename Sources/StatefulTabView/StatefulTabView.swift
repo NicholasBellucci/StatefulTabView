@@ -19,28 +19,44 @@ public struct StatefulTabView: View {
     internal var backgroundColor: UIColor? = nil
     internal var tabBarConfiguration: TabBarBackgroundConfiguration? = nil
     
-    @Binding internal var selectedIndex: Int
+    @State private var stateIndex: Int = 0
+    @Binding private var bindableIndex: Int
     
-    public init(selectedIndex: Binding<Int>, _ type: BuilderType, _ content: () -> Tab) {
-        _selectedIndex = selectedIndex
+    private var useBindableIndex: Bool = false
+    
+    public init(selectedIndex: Binding<Int>? = nil, _ type: BuilderType, _ content: () -> Tab) {
+        if let selectedIndex = selectedIndex {
+            _bindableIndex = selectedIndex
+            useBindableIndex = true
+        } else {
+            _bindableIndex = .constant(0)
+            useBindableIndex = false
+        }
         
         let tabController = UIHostingController(rootView: content().view)
         tabController.tabBarItem = content().barItem
         viewControllers.append(tabController)
     }
     
-    public init(selectedIndex: Binding<Int>, @TabBuilder _ content: () -> [Tab]) {
-        _selectedIndex = selectedIndex
+    public init(selectedIndex: Binding<Int>? = nil, @TabBuilder _ content: () -> [Tab]) {
+        if let selectedIndex = selectedIndex {
+            _bindableIndex = selectedIndex
+            useBindableIndex = true
+        } else {
+            _bindableIndex = .constant(0)
+            useBindableIndex = false
+        }
+        
         configureViewControllers(with: content())
     }
-    
+
     public var body: some View {
         TabBarController(controllers: viewControllers,
                          tabBarItems: tabBarItems,
                          barTintColor: barTintColor,
                          backgroundColor: backgroundColor,
                          tabBarConfiguration: tabBarConfiguration,
-                         selectedIndex: $selectedIndex)
+                         selectedIndex: useBindableIndex ? $bindableIndex : $stateIndex)
             .edgesIgnoringSafeArea(.all)
     }
 }

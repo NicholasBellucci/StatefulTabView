@@ -9,11 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var selectedIndex: Int = 0
     @State var badgeValue1: String? = "1"
     
     var body: some View {
-        StatefulTabView(selectedIndex: $selectedIndex) {
+        StatefulTabView {
             Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: $badgeValue1) {
                 NavigationView {
                     List {
