@@ -85,7 +85,7 @@ Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: $badgeValue) {
 
 ### Single Tab
 
-Due to the limitations of the current `@_functionBuilder` implementation in Swift, to build a StatefulTabView with one tab `BuilderType.individual` should be passed within the initializer.
+Due to the limitations of the current `@_functionBuilder` implementation in Swift, to build a StatefulTabView with one tab `BuilderType.individual`, should be passed within the initializer.
 
 ```Swift
 StatefulTabView(.individual) {
