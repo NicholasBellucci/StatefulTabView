@@ -21,7 +21,7 @@ In Xcode 11 or greater, navigate to `File > Swift Packages > Add Package Depende
         * [Badge Value](#badge-value)
         * [Single Tab](#single-tab)
         * [Scroll to Top with Large Titles](#scroll-to-top-with-large-titles)
-    * [License](#license)
+   * [License](#license)
 
 ## Features
 - [x] State driven selected index
