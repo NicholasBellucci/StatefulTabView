@@ -69,7 +69,18 @@ struct TabBarController: UIViewControllerRepresentable {
                 return
             }
             
-            navigationController.popToRootViewController(animated: true)
+            if navigationController.children.count == 1 {
+                scrollScrollViewToTop(in: navigationController)
+            } else {
+                navigationController.popToRootViewController(animated: true)
+            }
+        }
+        
+        func scrollScrollViewToTop(in navigationController: UINavigationController) {
+            let views = navigationController.viewControllers.map { $0.view.subviews }.reduce([], +)
+            if let scrollView = scrollView(in: views) {
+                scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+            }
         }
     }
 }
@@ -118,5 +129,19 @@ private extension TabBarController.Coordinator {
         }
         
         return controller
+    }
+    
+    func scrollView(in views: [UIView]) -> UIScrollView? {
+        var view: UIScrollView?
+        
+        views.forEach {
+            if let scrollView = $0 as? UIScrollView {
+                view = scrollView
+            } else {
+                view = scrollView(in: $0.subviews)
+            }
+        }
+        
+        return view
     }
 }
