@@ -22,7 +22,7 @@ struct TabBarController: UIViewControllerRepresentable {
     var tabBarConfiguration: TabBarBackgroundConfiguration?
     
     @Binding var selectedIndex: Int
-
+    
     func makeUIViewController(context: Context) -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = controllers
@@ -45,43 +45,8 @@ struct TabBarController: UIViewControllerRepresentable {
         }
     }
     
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    class Coordinator: NSObject, UITabBarControllerDelegate {
-        var parent: TabBarController
-
-        init(_ tabBarController: TabBarController) {
-            self.parent = tabBarController
-        }
-        
-        func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-            if parent.selectedIndex == tabBarController.selectedIndex {
-                popToRootViewController(viewController: viewController)
-            }
-
-            parent.selectedIndex = tabBarController.selectedIndex
-        }
-
-        func popToRootViewController(viewController: UIViewController) {
-            guard let navigationController = navigationController(in: viewController)  else {
-                return
-            }
-            
-            if navigationController.children.count == 1 {
-                scrollScrollViewToTop(in: navigationController)
-            } else {
-                navigationController.popToRootViewController(animated: true)
-            }
-        }
-        
-        func scrollScrollViewToTop(in navigationController: UINavigationController) {
-            let views = navigationController.viewControllers.map { $0.view.subviews }.reduce([], +)
-            if let scrollView = scrollView(in: views) {
-                scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
-            }
-        }
+    func makeCoordinator() -> TabBarCoordinator {
+        TabBarCoordinator(self)
     }
 }
 
@@ -110,9 +75,7 @@ private extension TabBarController {
         
         tabBar.standardAppearance = appearance
     }
-}
-
-private extension TabBarController.Coordinator {
+    
     func navigationController(in viewController: UIViewController) -> UINavigationController? {
         var controller: UINavigationController?
         
@@ -129,19 +92,5 @@ private extension TabBarController.Coordinator {
         }
         
         return controller
-    }
-    
-    func scrollView(in views: [UIView]) -> UIScrollView? {
-        var view: UIScrollView?
-        
-        views.forEach {
-            if let scrollView = $0 as? UIScrollView {
-                view = scrollView
-            } else {
-                view = scrollView(in: $0.subviews)
-            }
-        }
-        
-        return view
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C1EFD07246CA0D3007F1C61 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EFD06246CA0D3007F1C61 /* TabBarCoordinator.swift */; };
+		4C1EFD09246CA684007F1C61 /* Tab+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EFD08246CA684007F1C61 /* Tab+Modifiers.swift */; };
 		4C6A944C2468D15000D5C6C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A944B2468D15000D5C6C7 /* AppDelegate.swift */; };
 		4C6A944E2468D15000D5C6C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A944D2468D15000D5C6C7 /* SceneDelegate.swift */; };
 		4C6A94502468D15000D5C6C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A944F2468D15000D5C6C7 /* ContentView.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C1EFD06246CA0D3007F1C61 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		4C1EFD08246CA684007F1C61 /* Tab+Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Modifiers.swift"; sourceTree = "<group>"; };
 		4C6A94482468D15000D5C6C7 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C6A944B2468D15000D5C6C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C6A944D2468D15000D5C6C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9E331A2468E224007F2C0D /* StatefulTabView+Modifiers.swift */,
+				4C1EFD08246CA684007F1C61 /* Tab+Modifiers.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 			children = (
 				4C9E331D2468E224007F2C0D /* Tab.swift */,
 				4C9E331E2468E224007F2C0D /* TabBarController.swift */,
+				4C1EFD06246CA0D3007F1C61 /* TabBarCoordinator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -280,9 +286,11 @@
 			files = (
 				4C9E33202468E224007F2C0D /* StatefulTabView+Modifiers.swift in Sources */,
 				4C9E33232468E224007F2C0D /* TabBarController.swift in Sources */,
+				4C1EFD07246CA0D3007F1C61 /* TabBarCoordinator.swift in Sources */,
 				4C6A944C2468D15000D5C6C7 /* AppDelegate.swift in Sources */,
 				4C6A944E2468D15000D5C6C7 /* SceneDelegate.swift in Sources */,
 				4C9E33212468E224007F2C0D /* StatefulTabView.swift in Sources */,
+				4C1EFD09246CA684007F1C61 /* Tab+Modifiers.swift in Sources */,
 				4C6A94502468D15000D5C6C7 /* ContentView.swift in Sources */,
 				4C9E33222468E224007F2C0D /* Tab.swift in Sources */,
 			);

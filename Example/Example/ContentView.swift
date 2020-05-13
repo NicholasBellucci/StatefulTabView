@@ -24,7 +24,7 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .navigationBarTitle("Navigation View 1")
+                    .navigationBarTitle("Navigation View 1", displayMode: .inline)
                 }
             }
             
@@ -42,6 +42,7 @@ struct ContentView: View {
                     .navigationBarTitle("Navigation View 2")
                 }
             }
+            .prefersLargeTitle(true)
             
             Tab(title: "Tab 3", image: UIImage(systemName: "triangle.fill")) {
                 NavigationView{
@@ -57,6 +58,7 @@ struct ContentView: View {
                     .navigationBarTitle("Navigation View 3")
                 }
             }
+            .prefersLargeTitle(true)
         }
         .barTintColor(.red)
         .barBackgroundColor(.yellow)
