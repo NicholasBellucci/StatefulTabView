@@ -24,6 +24,7 @@ class TabBarCoordinator: NSObject, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if parent.selectedIndex == tabBarController.selectedIndex {
             guard let navigationController = navigationController(in: viewController)  else {
+                scrollToTop(in: viewController, selectedIndex: tabBarController.selectedIndex)
                 return
             }
             
@@ -41,6 +42,20 @@ class TabBarCoordinator: NSObject, UITabBarControllerDelegate {
         let views = navigationController.viewControllers
             .map { $0.view.subviews }
             .reduce([], +)
+        
+        if let scrollView = scrollView(in: views) {
+            if parent.tabBarItems[selectedIndex].prefersLargeTitle {
+                if !scrollView.bounds.contains(Constants.boundsContainsPoint) {
+                    scrollView.scrollRectToVisible(Constants.largeTitleRect, animated: true)
+                }
+            } else {
+                scrollView.scrollRectToVisible(Constants.inlineTitleRect, animated: true)
+            }
+        }
+    }
+    
+    func scrollToTop(in viewController: UIViewController, selectedIndex: Int) {
+        let views = viewController.view.subviews
         
         if let scrollView = scrollView(in: views) {
             if parent.tabBarItems[selectedIndex].prefersLargeTitle {

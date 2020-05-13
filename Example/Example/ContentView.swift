@@ -59,6 +59,18 @@ struct ContentView: View {
                 }
             }
             .prefersLargeTitle(true)
+            
+            Tab(title: "Tab 4", systemImageName: "shield.fill") {
+                List {
+                    Section {
+                        ForEach(0..<20, id: \.self) { index in
+                            NavigationLink(destination: PushedView(text: "Pushed number \(index)")) {
+                                Text("\(index)")
+                            }
+                        }
+                    }
+                }
+            }
         }
         .barTintColor(.red)
         .barBackgroundColor(.yellow)
