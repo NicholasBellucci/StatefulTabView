@@ -11,6 +11,8 @@ public struct Tab {
     var view: AnyView
     var barItem: UITabBarItem? = nil
     
+    internal var prefersLargeTitle: Bool = false
+    
     @Binding var badgeValue: String?
     
     public init<T>(title: String,

@@ -22,7 +22,7 @@ struct TabBarController: UIViewControllerRepresentable {
     var tabBarConfiguration: TabBarBackgroundConfiguration?
     
     @Binding var selectedIndex: Int
-
+    
     func makeUIViewController(context: Context) -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = controllers
@@ -45,32 +45,8 @@ struct TabBarController: UIViewControllerRepresentable {
         }
     }
     
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    class Coordinator: NSObject, UITabBarControllerDelegate {
-        var parent: TabBarController
-
-        init(_ tabBarController: TabBarController) {
-            self.parent = tabBarController
-        }
-        
-        func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-            if parent.selectedIndex == tabBarController.selectedIndex {
-                popToRootViewController(viewController: viewController)
-            }
-
-            parent.selectedIndex = tabBarController.selectedIndex
-        }
-
-        func popToRootViewController(viewController: UIViewController) {
-            guard let navigationController = navigationController(in: viewController)  else {
-                return
-            }
-            
-            navigationController.popToRootViewController(animated: true)
-        }
+    func makeCoordinator() -> TabBarCoordinator {
+        TabBarCoordinator(self)
     }
 }
 
@@ -99,9 +75,7 @@ private extension TabBarController {
         
         tabBar.standardAppearance = appearance
     }
-}
-
-private extension TabBarController.Coordinator {
+    
     func navigationController(in viewController: UIViewController) -> UINavigationController? {
         var controller: UINavigationController?
         

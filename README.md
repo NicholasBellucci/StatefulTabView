@@ -25,6 +25,7 @@ In Xcode 11 or greater, navigate to `File > Swift Packages > Add Package Depende
 - [x] TabBarItem badge value
 - [x] State retention from tab to tab
 - [x] Pop to root functionality when selecting the already selected tab
+- [x] Scroll to top functionality when selecting the already selected tab at the root view
 
 ## Usage
 
@@ -85,7 +86,7 @@ Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: $badgeValue) {
 
 ### Single Tab
 
-Due to the limitations of the current `@_functionBuilder` implementation in Swift, to build a StatefulTabView with one tab `BuilderType.individual` should be passed within the initializer.
+Due to the limitations of the current `@_functionBuilder` implementation in Swift, to build a StatefulTabView with one tab `BuilderType.individual`, should be passed within the initializer.
 
 ```Swift
 StatefulTabView(.individual) {
@@ -93,6 +94,22 @@ StatefulTabView(.individual) {
         ...
     }
 }
+```
+
+### Scroll to Top with Large Titles
+
+Scroll to top is handled when selecting the already selected tab that contains a scrollView in the heirarchy. The only issue is that large titles in navigation bars are not factored in when calling `scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)` for obvious reasons. Due to this limitation adding `.prefersLargeTitle(true)` to a `Tab` will fix this issue. For root navigation views that do not use a large title no change to a `Tab` is needed.
+
+```Swift
+Tab(title: "Tab 1", systemImageName: "circle.fill") {
+    NavigationView {
+        List {
+            ...
+        }
+        .navigationBarTitle("Navigation View 1", displayMode: .large)
+    }
+}
+.prefersLargeTitle(true)
 ```
 
 ## License
