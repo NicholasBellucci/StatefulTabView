@@ -18,23 +18,18 @@ public struct Tab {
     // MARK: Asset Image Names
     public init<T>(title: String,
                    imageName: String,
+                   selectedImageName: String? = nil,
                    badgeValue: String? = nil,
                    @ViewBuilder content: @escaping () -> T) where T: View {
         
         self.badgeValue = badgeValue
-        barItem = UITabBarItem(title: title, image: UIImage(named: imageName), selectedImage: nil)
         
-        self.view = AnyView(content())
-    }
-    
-    public init<T>(title: String,
-                   selectedImageName: String,
-                   unselectedImageName: String,
-                   badgeValue: String? = nil,
-                   @ViewBuilder content: @escaping () -> T) where T: View {
+        var selectedImage: UIImage?
+        if let selectedImageName = selectedImageName {
+            selectedImage = UIImage(named: selectedImageName)
+        }
         
-        self.badgeValue = badgeValue
-        barItem = UITabBarItem(title: title, image: UIImage(named: unselectedImageName), selectedImage: UIImage(named: selectedImageName))
+        barItem = UITabBarItem(title: title, image: UIImage(named: imageName), selectedImage: selectedImage)
         
         self.view = AnyView(content())
     }
@@ -42,23 +37,19 @@ public struct Tab {
     // MARK: System Image Names
     public init<T>(title: String,
                    systemImageName: String,
+                   selectedSystemImageName: String? = nil,
                    badgeValue: String? = nil,
                    @ViewBuilder content: @escaping () -> T) where T: View {
         
         self.badgeValue = badgeValue
-        barItem = UITabBarItem(title: title, image: UIImage(systemName: systemImageName), selectedImage: nil)
         
-        self.view = AnyView(content())
-    }
-    
-    public init<T>(title: String,
-                   selectedSystemImageName: String,
-                   unselectedSystemImageName: String,
-                   badgeValue: String? = nil,
-                   @ViewBuilder content: @escaping () -> T) where T: View {
+        var selectedImage: UIImage?
+        if let selectedSystemImageName = selectedSystemImageName {
+            selectedImage = UIImage(systemName: selectedSystemImageName)
+        }
         
-        self.badgeValue = badgeValue
-        barItem = UITabBarItem(title: title, image: UIImage(systemName: unselectedSystemImageName), selectedImage: UIImage(systemName: selectedSystemImageName))
+        
+        barItem = UITabBarItem(title: title, image: UIImage(systemName: systemImageName), selectedImage: selectedImage)
         
         self.view = AnyView(content())
     }
@@ -66,25 +57,14 @@ public struct Tab {
     // MARK: UIImages
     public init<T>(title: String,
                    image: UIImage?,
+                   selectedImage: UIImage? = nil,
                    badgeValue: String? = nil,
                    @ViewBuilder content: @escaping () -> T) where T: View {
         
         self.badgeValue = badgeValue
-        barItem = UITabBarItem(title: title, image: image, selectedImage: nil)
         
-        self.view = AnyView(content())
-    }
-    
-    public init<T>(title: String,
-                   image: UIImage?,
-                   selectedImage: UIImage?,
-                   badgeValue: String? = nil,
-                   @ViewBuilder content: @escaping () -> T) where T: View {
-        
-        self.badgeValue = badgeValue
         barItem = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
         
         self.view = AnyView(content())
     }
-
 }

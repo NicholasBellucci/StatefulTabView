@@ -60,7 +60,7 @@ struct ContentView: View {
             }
             .prefersLargeTitle(true)
             
-            Tab(title: "Tab 4", selectedSystemImageName: "shield.fill", unselectedSystemImageName: "shield") {
+            Tab(title: "Tab 4", systemImageName: "shield", selectedSystemImageName: "shield.fill") {
                 List {
                     Section {
                         ForEach(0..<20, id: \.self) { index in
