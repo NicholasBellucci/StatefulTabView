@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         StatefulTabView {
-            Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: $badgeValue1) {
+            Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: badgeValue1) {
                 NavigationView {
                     List {
                         Section {
@@ -60,7 +60,7 @@ struct ContentView: View {
             }
             .prefersLargeTitle(true)
             
-            Tab(title: "Tab 4", systemImageName: "shield.fill") {
+            Tab(title: "Tab 4", selectedSystemImageName: "shield.fill", unselectedSystemImageName: "shield") {
                 List {
                     Section {
                         ForEach(0..<20, id: \.self) { index in
