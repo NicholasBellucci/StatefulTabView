@@ -19,7 +19,6 @@ In Xcode 11 or greater, navigate to `File > Swift Packages > Add Package Depende
         * [Appearance Modifications](#appearance-modifications)
         * [Selected Index](#selected-index)
         * [Badge Value](#badge-value)
-        * [Single Tab](#single-tab)
         * [Scroll to Top with Large Titles](#scroll-to-top-with-large-titles)
    * [License](#license)
 
