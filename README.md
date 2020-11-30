@@ -92,18 +92,6 @@ Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: $badgeValue) {
 }
 ```
 
-### Single Tab
-
-Due to the limitations of the current `@_functionBuilder` implementation in Swift, to build a StatefulTabView with one tab `BuilderType.individual`, should be passed within the initializer.
-
-```Swift
-StatefulTabView(.individual) {
-    Tab(title: "Tab 1", systemImageName: "circle.fill") {
-        ...
-    }
-}
-```
-
 ### Scroll to Top with Large Titles
 
 Scroll to top is handled when selecting the already selected tab that contains a scrollView in the heirarchy. The only issue is that large titles in navigation bars are not factored in when calling `scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)` for obvious reasons. Due to this limitation adding `.prefersLargeTitle(true)` to a `Tab` will fix this issue. For root navigation views that do not use a large title no change to a `Tab` is needed.
