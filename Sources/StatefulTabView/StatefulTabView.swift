@@ -16,6 +16,7 @@ public struct StatefulTabView: View {
     internal var tabBarItems: [Tab] = []
     
     internal var barTintColor: UIColor? = nil
+    internal var unselectedItemTintColor: UIColor? = nil
     internal var backgroundColor: UIColor? = nil
     internal var tabBarConfiguration: TabBarBackgroundConfiguration? = nil
     
@@ -54,6 +55,7 @@ public struct StatefulTabView: View {
         TabBarController(controllers: viewControllers,
                          tabBarItems: tabBarItems,
                          barTintColor: barTintColor,
+                         unselectedItemTintColor: unselectedItemTintColor,
                          backgroundColor: backgroundColor,
                          tabBarConfiguration: tabBarConfiguration,
                          selectedIndex: useBindableIndex ? $bindableIndex : $stateIndex)

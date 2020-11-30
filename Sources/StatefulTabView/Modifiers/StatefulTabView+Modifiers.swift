@@ -13,6 +13,12 @@ public extension StatefulTabView {
         copy.barTintColor = color
         return copy
     }
+
+    func unselectedItemTintColor(_ color: UIColor) -> StatefulTabView {
+        var copy = self
+        copy.unselectedItemTintColor = color
+        return copy
+    }
     
     func barBackgroundColor(_ color: UIColor) -> StatefulTabView {
         var copy = self

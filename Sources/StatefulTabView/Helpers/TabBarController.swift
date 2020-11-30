@@ -18,6 +18,7 @@ struct TabBarController: UIViewControllerRepresentable {
     var tabBarItems: [Tab]
     
     var barTintColor: UIColor?
+    var unselectedItemTintColor: UIColor?
     var backgroundColor: UIColor?
     var tabBarConfiguration: TabBarBackgroundConfiguration?
     
@@ -67,6 +68,15 @@ private extension TabBarController {
         
         if let barTintColor = barTintColor {
             tabBar.tintColor = barTintColor
+        }
+
+        if let unselectedItemTintColor = unselectedItemTintColor {
+            if #available(iOS 13.0, *) {
+                appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: unselectedItemTintColor]
+                appearance.stackedLayoutAppearance.normal.iconColor = unselectedItemTintColor
+            } else {
+                tabBar.unselectedItemTintColor = unselectedItemTintColor
+            }
         }
         
         if let backgroundColor = backgroundColor {
