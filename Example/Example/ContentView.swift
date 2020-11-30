@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var badgeValue1: String? = "1"
+    @State var badgeValue: String? = "1"
     
     var body: some View {
         StatefulTabView {
-            Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: badgeValue1) {
+            Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: badgeValue) {
                 NavigationView {
                     List {
                         Section {
@@ -73,6 +73,7 @@ struct ContentView: View {
             }
         }
         .barTintColor(.red)
+        .unselectedItemTintColor(.green)
         .barBackgroundColor(.yellow)
         .barAppearanceConfiguration(.transparent)
     }

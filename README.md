@@ -19,7 +19,6 @@ In Xcode 11 or greater, navigate to `File > Swift Packages > Add Package Depende
         * [Appearance Modifications](#appearance-modifications)
         * [Selected Index](#selected-index)
         * [Badge Value](#badge-value)
-        * [Single Tab](#single-tab)
         * [Scroll to Top with Large Titles](#scroll-to-top-with-large-titles)
    * [License](#license)
 
@@ -67,39 +66,32 @@ StatefulTabView {
     ...
 }
 .barTintColor(.red)
+.unselectedItemTintColor(.green)
 .barBackgroundColor(.yellow)
 .barAppearanceConfiguration(.transparent)
 ```
 
 ### Selected Index
 
-The selected index of the StatefulTabView can be set within the initializer. The passed value is a binding.
+The selected index of the StatefulTabView can be set within the initializer.
 
 ```Swift
-StatefulTabView(selectedIndex: $selectedIndex) {
+@State var selectedIndex: Int = 2
+
+StatefulTabView(selectedIndex: selectedIndex) {
     ...
 }
 ```
 
 ### Badge Value
 
-The TabBarItem badge value can be set in the initializer of a Tab. The passed value is a binding.
+The TabBarItem badge value can be set in the initializer of a Tab.
 
 ```Swift
-Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: $badgeValue) {
+@State var badgeValue: String = "1"
+
+Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: badgeValue) {
     ...
-}
-```
-
-### Single Tab
-
-Due to the limitations of the current `@_functionBuilder` implementation in Swift, to build a StatefulTabView with one tab `BuilderType.individual`, should be passed within the initializer.
-
-```Swift
-StatefulTabView(.individual) {
-    Tab(title: "Tab 1", systemImageName: "circle.fill") {
-        ...
-    }
 }
 ```
 

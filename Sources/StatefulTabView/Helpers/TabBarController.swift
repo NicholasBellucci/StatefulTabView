@@ -18,10 +18,10 @@ struct TabBarController: UIViewControllerRepresentable {
     var tabBarItems: [Tab]
     
     var barTintColor: UIColor?
+    var unselectedItemTintColor: UIColor?
     var backgroundColor: UIColor?
     var tabBarConfiguration: TabBarBackgroundConfiguration?
-    
-    @Binding var selectedIndex: Int
+    var selectedIndex: Int
     
     func makeUIViewController(context: Context) -> UITabBarController {
         let tabBarController = UITabBarController()
@@ -67,6 +67,15 @@ private extension TabBarController {
         
         if let barTintColor = barTintColor {
             tabBar.tintColor = barTintColor
+        }
+
+        if let unselectedItemTintColor = unselectedItemTintColor {
+            if #available(iOS 13.0, *) {
+                appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: unselectedItemTintColor]
+                appearance.stackedLayoutAppearance.normal.iconColor = unselectedItemTintColor
+            } else {
+                tabBar.unselectedItemTintColor = unselectedItemTintColor
+            }
         }
         
         if let backgroundColor = backgroundColor {

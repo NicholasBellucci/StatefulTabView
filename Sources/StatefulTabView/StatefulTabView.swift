@@ -7,46 +7,22 @@
 
 import SwiftUI
 
-public enum BuilderType {
-    case individual
-}
-
 public struct StatefulTabView: View {
     internal var viewControllers: [UIHostingController<AnyView>] = []
     internal var tabBarItems: [Tab] = []
-    
+
+    internal var selectedIndex: Int
     internal var barTintColor: UIColor? = nil
+    internal var unselectedItemTintColor: UIColor? = nil
     internal var backgroundColor: UIColor? = nil
     internal var tabBarConfiguration: TabBarBackgroundConfiguration? = nil
     
     @State private var stateIndex: Int = 0
-    @Binding private var bindableIndex: Int
-    
+
     private var useBindableIndex: Bool = false
     
-    public init(selectedIndex: Binding<Int>? = nil, _ type: BuilderType, _ content: () -> Tab) {
-        if let selectedIndex = selectedIndex {
-            _bindableIndex = selectedIndex
-            useBindableIndex = true
-        } else {
-            _bindableIndex = .constant(0)
-            useBindableIndex = false
-        }
-        
-        let tabController = UIHostingController(rootView: content().view)
-        tabController.tabBarItem = content().barItem
-        viewControllers.append(tabController)
-    }
-    
-    public init(selectedIndex: Binding<Int>? = nil, @TabBuilder _ content: () -> [Tab]) {
-        if let selectedIndex = selectedIndex {
-            _bindableIndex = selectedIndex
-            useBindableIndex = true
-        } else {
-            _bindableIndex = .constant(0)
-            useBindableIndex = false
-        }
-        
+    public init(selectedIndex: Int = 0, @TabBuilder _ content: () -> [Tab]) {
+        self.selectedIndex = selectedIndex
         configureViewControllers(with: content())
     }
 
@@ -54,9 +30,10 @@ public struct StatefulTabView: View {
         TabBarController(controllers: viewControllers,
                          tabBarItems: tabBarItems,
                          barTintColor: barTintColor,
+                         unselectedItemTintColor: unselectedItemTintColor,
                          backgroundColor: backgroundColor,
                          tabBarConfiguration: tabBarConfiguration,
-                         selectedIndex: useBindableIndex ? $bindableIndex : $stateIndex)
+                         selectedIndex: selectedIndex)
             .edgesIgnoringSafeArea(.all)
     }
 }
@@ -76,5 +53,9 @@ private extension StatefulTabView {
 public struct TabBuilder {
     public static func buildBlock(_ children: Tab...) -> [Tab] {
         children
+    }
+
+    public static func buildBlock(_ component: Tab) -> [Tab] {
+        [component]
     }
 }
