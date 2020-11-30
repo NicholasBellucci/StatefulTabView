@@ -86,7 +86,9 @@ StatefulTabView(selectedIndex: $selectedIndex) {
 The TabBarItem badge value can be set in the initializer of a Tab. The passed value is a binding.
 
 ```Swift
-Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: $badgeValue) {
+@State var badgeValue: String = "1"
+
+Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: badgeValue) {
     ...
 }
 ```
