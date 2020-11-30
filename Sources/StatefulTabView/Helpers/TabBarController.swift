@@ -21,8 +21,7 @@ struct TabBarController: UIViewControllerRepresentable {
     var unselectedItemTintColor: UIColor?
     var backgroundColor: UIColor?
     var tabBarConfiguration: TabBarBackgroundConfiguration?
-    
-    @Binding var selectedIndex: Int
+    var selectedIndex: Int
     
     func makeUIViewController(context: Context) -> UITabBarController {
         let tabBarController = UITabBarController()

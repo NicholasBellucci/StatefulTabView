@@ -73,10 +73,12 @@ StatefulTabView {
 
 ### Selected Index
 
-The selected index of the StatefulTabView can be set within the initializer. The passed value is a binding.
+The selected index of the StatefulTabView can be set within the initializer.
 
 ```Swift
-StatefulTabView(selectedIndex: $selectedIndex) {
+@State var selectedIndex: Int = 2
+
+StatefulTabView(selectedIndex: selectedIndex) {
     ...
 }
 ```
