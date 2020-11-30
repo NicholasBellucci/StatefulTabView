@@ -67,6 +67,7 @@ StatefulTabView {
     ...
 }
 .barTintColor(.red)
+.unselectedItemTintColor(.green)
 .barBackgroundColor(.yellow)
 .barAppearanceConfiguration(.transparent)
 ```
