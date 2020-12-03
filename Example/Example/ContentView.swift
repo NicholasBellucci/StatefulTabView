@@ -9,10 +9,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var selectedIndex: Int = 1
     @State var badgeValue: String? = "1"
-    
+
     var body: some View {
-        StatefulTabView {
+        StatefulTabView(selectedIndex: $selectedIndex) {
             Tab(title: "Tab 1", systemImageName: "circle.fill", badgeValue: badgeValue) {
                 NavigationView {
                     List {
@@ -29,7 +30,7 @@ struct ContentView: View {
             }
             
             Tab(title: "Tab 2", systemImageName: "square.fill") {
-                NavigationView{
+                NavigationView {
                     List {
                         Section {
                             ForEach(0..<20, id: \.self) { index in

@@ -11,18 +11,25 @@ public struct StatefulTabView: View {
     internal var viewControllers: [UIHostingController<AnyView>] = []
     internal var tabBarItems: [Tab] = []
 
-    internal var selectedIndex: Int
     internal var barTintColor: UIColor? = nil
     internal var unselectedItemTintColor: UIColor? = nil
     internal var backgroundColor: UIColor? = nil
     internal var tabBarConfiguration: TabBarBackgroundConfiguration? = nil
     
     @State private var stateIndex: Int = 0
+    @Binding private var bindableIndex: Int
 
     private var useBindableIndex: Bool = false
     
-    public init(selectedIndex: Int = 0, @TabBuilder _ content: () -> [Tab]) {
-        self.selectedIndex = selectedIndex
+    public init(selectedIndex: Binding<Int>? = nil, @TabBuilder _ content: () -> [Tab]) {
+        if let selectedIndex = selectedIndex {
+            _bindableIndex = selectedIndex
+            useBindableIndex = true
+        } else {
+            _bindableIndex = .constant(0)
+            useBindableIndex = false
+        }
+
         configureViewControllers(with: content())
     }
 
@@ -33,7 +40,7 @@ public struct StatefulTabView: View {
                          unselectedItemTintColor: unselectedItemTintColor,
                          backgroundColor: backgroundColor,
                          tabBarConfiguration: tabBarConfiguration,
-                         selectedIndex: selectedIndex)
+                         selectedIndex: useBindableIndex ? $bindableIndex : $stateIndex)
             .edgesIgnoringSafeArea(.all)
     }
 }
