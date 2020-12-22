@@ -77,6 +77,10 @@ struct ContentView: View {
         .unselectedItemTintColor(.green)
         .barBackgroundColor(.yellow)
         .barAppearanceConfiguration(.transparent)
+        .unselectedItemFont(UIFont(name: "AmericanTypewriter", size: 10)!)
+        .selectedItemFont(UIFont(name: "AvenirNext-HeavyItalic", size: 10)!)
+        .badgeFont(UIFont(name: "Courier-Bold", size: 22)!)
+        .badgeOffset(UIOffset(horizontal: -6, vertical: 12))
     }
 }
 

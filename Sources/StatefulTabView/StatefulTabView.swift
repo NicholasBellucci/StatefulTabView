@@ -15,6 +15,10 @@ public struct StatefulTabView: View {
     internal var unselectedItemTintColor: UIColor? = nil
     internal var backgroundColor: UIColor? = nil
     internal var tabBarConfiguration: TabBarBackgroundConfiguration? = nil
+    internal var unselectedItemFont: UIFont?
+    internal var selectedItemFont: UIFont?
+    internal var badgeFont: UIFont?
+    internal var badgeOffset: UIOffset?
     
     @State private var stateIndex: Int = 0
     @Binding private var bindableIndex: Int
@@ -39,6 +43,10 @@ public struct StatefulTabView: View {
                          barTintColor: barTintColor,
                          unselectedItemTintColor: unselectedItemTintColor,
                          backgroundColor: backgroundColor,
+                         unselectedItemFont: unselectedItemFont,
+                         selectedItemFont: selectedItemFont,
+                         badgeFont: badgeFont,
+                         badgeOffset: badgeOffset,
                          tabBarConfiguration: tabBarConfiguration,
                          selectedIndex: useBindableIndex ? $bindableIndex : $stateIndex)
             .edgesIgnoringSafeArea(.all)

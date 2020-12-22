@@ -31,4 +31,28 @@ public extension StatefulTabView {
         copy.tabBarConfiguration = configuration
         return copy
     }
+    
+    func unselectedItemFont(_ font: UIFont?) -> StatefulTabView {
+        var copy = self
+        copy.unselectedItemFont = font
+        return copy
+    }
+    
+    func selectedItemFont(_ font: UIFont?) -> StatefulTabView {
+        var copy = self
+        copy.selectedItemFont = font
+        return copy
+    }
+    
+    func badgeFont(_ font: UIFont?) -> StatefulTabView {
+        var copy = self
+        copy.badgeFont = font
+        return copy
+    }
+    
+    func badgeOffset(_ offset: UIOffset) -> StatefulTabView {
+        var copy = self
+        copy.badgeOffset = offset
+        return copy
+    }
 }

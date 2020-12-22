@@ -20,6 +20,10 @@ struct TabBarController: UIViewControllerRepresentable {
     var barTintColor: UIColor?
     var unselectedItemTintColor: UIColor?
     var backgroundColor: UIColor?
+    var unselectedItemFont: UIFont?
+    var selectedItemFont: UIFont?
+    var badgeFont: UIFont?
+    var badgeOffset: UIOffset?
     var tabBarConfiguration: TabBarBackgroundConfiguration?
     
     @Binding var selectedIndex: Int
@@ -65,17 +69,51 @@ private extension TabBarController {
                 appearance.configureWithTransparentBackground()
             }
         }
-        
+
         if let barTintColor = barTintColor {
             tabBar.tintColor = barTintColor
         }
 
+        // UITabBarItem font
+        if #available(iOS 13.0, *) {
+            var attrs: [NSAttributedString.Key: Any] = [:]
+            if let unselectedItemTintColor = unselectedItemTintColor { attrs[.foregroundColor] = unselectedItemTintColor }
+            if let unselectedItemFont = unselectedItemFont { attrs[.font] = unselectedItemFont }
+            if !attrs.isEmpty { appearance.stackedLayoutAppearance.normal.titleTextAttributes = attrs }
+            
+            attrs = [:]
+            if let selectedItemFont = selectedItemFont { attrs[.font] = selectedItemFont }
+            if !attrs.isEmpty { appearance.stackedLayoutAppearance.selected.titleTextAttributes = attrs }
+        }
+        
+        // Badge font
+        if let badgeFont = badgeFont {
+            if #available(iOS 13.0, *) {
+                appearance.stackedLayoutAppearance.normal.badgeTextAttributes = [.font: badgeFont]
+            }
+        }
+        
+        // Badge offset
+        if let badgeOffset = badgeOffset {
+            if #available(iOS 13.0, *) {
+                appearance.stackedLayoutAppearance.normal.badgePositionAdjustment = badgeOffset
+            }
+        }
+        
+        // Unselected item tint color + badge color
         if let unselectedItemTintColor = unselectedItemTintColor {
             if #available(iOS 13.0, *) {
-                appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: unselectedItemTintColor]
                 appearance.stackedLayoutAppearance.normal.iconColor = unselectedItemTintColor
+                appearance.stackedLayoutAppearance.normal.badgeBackgroundColor = unselectedItemTintColor
             } else {
                 tabBar.unselectedItemTintColor = unselectedItemTintColor
+            }
+        }
+        
+        // Selected item badge color
+        if let barTintColor = barTintColor {
+            if #available(iOS 13.0, *) {
+                appearance.stackedLayoutAppearance.selected.badgeBackgroundColor = barTintColor
             }
         }
         
