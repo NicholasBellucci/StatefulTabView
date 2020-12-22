@@ -73,14 +73,26 @@ struct ContentView: View {
                 }
             }
         }
-        .barTintColor(.red)
-        .unselectedItemTintColor(.green)
-        .barBackgroundColor(.yellow)
-        .barAppearanceConfiguration(.transparent)
-        .unselectedItemFont(UIFont(name: "AmericanTypewriter", size: 10)!)
-        .selectedItemFont(UIFont(name: "AvenirNext-HeavyItalic", size: 10)!)
-        .badgeFont(UIFont(name: "Courier-Bold", size: 22)!)
-        .badgeOffset(UIOffset(horizontal: -6, vertical: 12))
+        .barBackgroundColor(.systemBackground)
+        .barAppearanceConfiguration(.opaque)
+        .selectedItemConfiguration(.init(
+            titleFont: UIFont(name: "AvenirNext-HeavyItalic", size: 10)!,
+            titleColor: .label,
+            iconColor: .label,
+            badgeFont: UIFont(name: "Courier-BoldOblique", size: 18)!,
+            badgeTextColor: .systemBackground,
+            badgeBackgroundColor: .label,
+            badgeOffset: .zero
+        ))
+        .unselectedItemConfiguration(.init(
+            titleFont: UIFont(name: "AmericanTypewriter", size: 10)!,
+            titleColor: .tertiaryLabel,
+            iconColor: .tertiaryLabel,
+            badgeFont: UIFont(name: "Courier", size: 18)!,
+            badgeTextColor: .systemBackground,
+            badgeBackgroundColor: .tertiaryLabel,
+            badgeOffset: .zero
+        ))
     }
 }
 

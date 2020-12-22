@@ -11,14 +11,11 @@ public struct StatefulTabView: View {
     internal var viewControllers: [UIHostingController<AnyView>] = []
     internal var tabBarItems: [Tab] = []
 
-    internal var barTintColor: UIColor? = nil
-    internal var unselectedItemTintColor: UIColor? = nil
     internal var backgroundColor: UIColor? = nil
+    internal var selectedItemConfiguration: TabBarItemConfiguration? = nil
+    internal var unselectedItemConfiguration: TabBarItemConfiguration? = nil
     internal var tabBarConfiguration: TabBarBackgroundConfiguration? = nil
-    internal var unselectedItemFont: UIFont?
-    internal var selectedItemFont: UIFont?
-    internal var badgeFont: UIFont?
-    internal var badgeOffset: UIOffset?
+
     
     @State private var stateIndex: Int = 0
     @Binding private var bindableIndex: Int
@@ -40,13 +37,9 @@ public struct StatefulTabView: View {
     public var body: some View {
         TabBarController(controllers: viewControllers,
                          tabBarItems: tabBarItems,
-                         barTintColor: barTintColor,
-                         unselectedItemTintColor: unselectedItemTintColor,
                          backgroundColor: backgroundColor,
-                         unselectedItemFont: unselectedItemFont,
-                         selectedItemFont: selectedItemFont,
-                         badgeFont: badgeFont,
-                         badgeOffset: badgeOffset,
+                         selectedItemConfiguration: selectedItemConfiguration,
+                         unselectedItemConfiguration: unselectedItemConfiguration,
                          tabBarConfiguration: tabBarConfiguration,
                          selectedIndex: useBindableIndex ? $bindableIndex : $stateIndex)
             .edgesIgnoringSafeArea(.all)

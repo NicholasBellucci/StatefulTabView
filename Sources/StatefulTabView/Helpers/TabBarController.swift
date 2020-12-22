@@ -13,17 +13,34 @@ public enum TabBarBackgroundConfiguration {
     case transparent
 }
 
+public struct TabBarItemConfiguration {
+    public var titleFont: UIFont
+    public var titleColor: UIColor
+    public var iconColor: UIColor
+    public var badgeFont: UIFont
+    public var badgeTextColor: UIColor
+    public var badgeBackgroundColor: UIColor
+    public var badgeOffset: UIOffset
+    
+    public init(titleFont: UIFont, titleColor: UIColor, iconColor: UIColor, badgeFont: UIFont, badgeTextColor: UIColor, badgeBackgroundColor: UIColor, badgeOffset: UIOffset? = .zero) {
+        self.titleFont = titleFont
+        self.titleColor = titleColor
+        self.iconColor = iconColor
+        self.badgeFont = badgeFont
+        self.badgeTextColor = badgeTextColor
+        self.badgeBackgroundColor = badgeBackgroundColor
+        self.badgeOffset = badgeOffset ?? .zero
+    }
+}
+
 struct TabBarController: UIViewControllerRepresentable {
     var controllers: [UIViewController]
     var tabBarItems: [Tab]
     
-    var barTintColor: UIColor?
-    var unselectedItemTintColor: UIColor?
     var backgroundColor: UIColor?
-    var unselectedItemFont: UIFont?
-    var selectedItemFont: UIFont?
-    var badgeFont: UIFont?
-    var badgeOffset: UIOffset?
+    var selectedItemConfiguration: TabBarItemConfiguration?
+    var unselectedItemConfiguration: TabBarItemConfiguration?
+    
     var tabBarConfiguration: TabBarBackgroundConfiguration?
     
     @Binding var selectedIndex: Int
@@ -69,56 +86,65 @@ private extension TabBarController {
                 appearance.configureWithTransparentBackground()
             }
         }
-
-        if let barTintColor = barTintColor {
-            tabBar.tintColor = barTintColor
-        }
-
-        // UITabBarItem font
-        if #available(iOS 13.0, *) {
-            var attrs: [NSAttributedString.Key: Any] = [:]
-            if let unselectedItemTintColor = unselectedItemTintColor { attrs[.foregroundColor] = unselectedItemTintColor }
-            if let unselectedItemFont = unselectedItemFont { attrs[.font] = unselectedItemFont }
-            if !attrs.isEmpty { appearance.stackedLayoutAppearance.normal.titleTextAttributes = attrs }
-            
-            attrs = [:]
-            if let selectedItemFont = selectedItemFont { attrs[.font] = selectedItemFont }
-            if !attrs.isEmpty { appearance.stackedLayoutAppearance.selected.titleTextAttributes = attrs }
-        }
-        
-        // Badge font
-        if let badgeFont = badgeFont {
-            if #available(iOS 13.0, *) {
-                appearance.stackedLayoutAppearance.normal.badgeTextAttributes = [.font: badgeFont]
-            }
-        }
-        
-        // Badge offset
-        if let badgeOffset = badgeOffset {
-            if #available(iOS 13.0, *) {
-                appearance.stackedLayoutAppearance.normal.badgePositionAdjustment = badgeOffset
-            }
-        }
-        
-        // Unselected item tint color + badge color
-        if let unselectedItemTintColor = unselectedItemTintColor {
-            if #available(iOS 13.0, *) {
-                appearance.stackedLayoutAppearance.normal.iconColor = unselectedItemTintColor
-                appearance.stackedLayoutAppearance.normal.badgeBackgroundColor = unselectedItemTintColor
-            } else {
-                tabBar.unselectedItemTintColor = unselectedItemTintColor
-            }
-        }
-        
-        // Selected item badge color
-        if let barTintColor = barTintColor {
-            if #available(iOS 13.0, *) {
-                appearance.stackedLayoutAppearance.selected.badgeBackgroundColor = barTintColor
-            }
-        }
         
         if let backgroundColor = backgroundColor {
             tabBar.backgroundColor = backgroundColor
+        }
+        
+        if let conf = unselectedItemConfiguration {
+            tabBar.tintColor = conf.titleColor
+            
+            if #available(iOS 13.0, *) {
+                appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+                    .font: conf.titleFont,
+                    .foregroundColor: conf.titleColor
+                ]
+                appearance.stackedLayoutAppearance.normal.badgeTextAttributes = [
+                    .font: conf.badgeFont,
+                    .foregroundColor: conf.badgeTextColor
+                ]
+                appearance.stackedLayoutAppearance.normal.iconColor = conf.iconColor
+                appearance.stackedLayoutAppearance.normal.badgeBackgroundColor = conf.badgeBackgroundColor
+                appearance.stackedLayoutAppearance.normal.badgePositionAdjustment = conf.badgeOffset
+                
+                appearance.inlineLayoutAppearance.normal.titleTextAttributes = appearance.stackedLayoutAppearance.normal.titleTextAttributes
+                appearance.inlineLayoutAppearance.normal.badgeTextAttributes = appearance.stackedLayoutAppearance.normal.badgeTextAttributes
+                appearance.inlineLayoutAppearance.normal.iconColor = appearance.stackedLayoutAppearance.normal.iconColor
+                appearance.inlineLayoutAppearance.normal.badgeBackgroundColor = appearance.stackedLayoutAppearance.normal.badgeBackgroundColor
+                
+                appearance.compactInlineLayoutAppearance.normal.titleTextAttributes = appearance.stackedLayoutAppearance.normal.titleTextAttributes
+                appearance.compactInlineLayoutAppearance.normal.badgeTextAttributes = appearance.stackedLayoutAppearance.normal.badgeTextAttributes
+                appearance.compactInlineLayoutAppearance.normal.iconColor = appearance.stackedLayoutAppearance.normal.iconColor
+                appearance.compactInlineLayoutAppearance.normal.badgeBackgroundColor = appearance.stackedLayoutAppearance.normal.badgeBackgroundColor
+            }
+        }
+        
+        if let conf = selectedItemConfiguration {
+            tabBar.tintColor = conf.titleColor
+            
+            if #available(iOS 13.0, *) {
+                appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+                    .font: conf.titleFont,
+                    .foregroundColor: conf.titleColor
+                ]
+                appearance.stackedLayoutAppearance.selected.badgeTextAttributes = [
+                    .font: conf.badgeFont,
+                    .foregroundColor: conf.badgeTextColor
+                ]
+                appearance.stackedLayoutAppearance.selected.iconColor = conf.iconColor
+                appearance.stackedLayoutAppearance.selected.badgeBackgroundColor = conf.badgeBackgroundColor
+                appearance.stackedLayoutAppearance.selected.badgePositionAdjustment = conf.badgeOffset
+                
+                appearance.inlineLayoutAppearance.selected.titleTextAttributes = appearance.stackedLayoutAppearance.selected.titleTextAttributes
+                appearance.inlineLayoutAppearance.selected.badgeTextAttributes = appearance.stackedLayoutAppearance.selected.badgeTextAttributes
+                appearance.inlineLayoutAppearance.selected.iconColor = appearance.stackedLayoutAppearance.selected.iconColor
+                appearance.inlineLayoutAppearance.selected.badgeBackgroundColor = appearance.stackedLayoutAppearance.selected.badgeBackgroundColor
+                
+                appearance.compactInlineLayoutAppearance.selected.titleTextAttributes = appearance.stackedLayoutAppearance.selected.titleTextAttributes
+                appearance.compactInlineLayoutAppearance.selected.badgeTextAttributes = appearance.stackedLayoutAppearance.selected.badgeTextAttributes
+                appearance.compactInlineLayoutAppearance.selected.iconColor = appearance.stackedLayoutAppearance.selected.iconColor
+                appearance.compactInlineLayoutAppearance.selected.badgeBackgroundColor = appearance.stackedLayoutAppearance.selected.badgeBackgroundColor
+            }
         }
         
         tabBar.standardAppearance = appearance
