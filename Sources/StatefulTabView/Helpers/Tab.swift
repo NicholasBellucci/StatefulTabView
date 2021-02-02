@@ -16,7 +16,7 @@ public struct Tab {
     let badgeValue: String?
     
     // MARK: Asset Image Names
-    public init<T>(title: String,
+    public init<T>(title: String? = nil,
                    imageName: String,
                    selectedImageName: String? = nil,
                    badgeValue: String? = nil,
