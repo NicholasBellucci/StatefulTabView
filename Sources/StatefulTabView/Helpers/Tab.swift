@@ -35,7 +35,7 @@ public struct Tab {
     }
     
     // MARK: System Image Names
-    public init<T>(title: String,
+    public init<T>(title: String? = nil,
                    systemImageName: String,
                    selectedSystemImageName: String? = nil,
                    badgeValue: String? = nil,
@@ -44,10 +44,10 @@ public struct Tab {
         self.badgeValue = badgeValue
         
         var selectedImage: UIImage?
+        
         if let selectedSystemImageName = selectedSystemImageName {
             selectedImage = UIImage(systemName: selectedSystemImageName)
         }
-        
         
         barItem = UITabBarItem(title: title, image: UIImage(systemName: systemImageName), selectedImage: selectedImage)
         
@@ -55,7 +55,7 @@ public struct Tab {
     }
     
     // MARK: UIImages
-    public init<T>(title: String,
+    public init<T>(title: String? = nil,
                    image: UIImage?,
                    selectedImage: UIImage? = nil,
                    badgeValue: String? = nil,
