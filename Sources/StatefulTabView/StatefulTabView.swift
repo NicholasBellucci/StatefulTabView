@@ -56,7 +56,7 @@ private extension StatefulTabView {
     }
 }
 
-@_functionBuilder
+@resultBuilder
 public struct TabBuilder {
     public static func buildBlock(_ children: Tab...) -> [Tab] {
         children
