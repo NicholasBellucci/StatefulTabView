@@ -88,6 +88,10 @@ private extension TabBarCoordinator {
         var view: UIScrollView?
         
         views.forEach {
+            guard view == nil else {
+                return
+            }
+
             if let scrollView = $0 as? UIScrollView {
                 view = scrollView
             } else {
